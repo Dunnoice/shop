@@ -1,0 +1,37 @@
+body {
+	background:  #2B2B2B;
+	font-family: Consolas, sans-serif;
+	color:       #BBBBBB;
+}
+
+h1 {color: #ffffff;}
+
+h2 {color: #eeeeee;}
+
+h3 {color: #dddddd;}
+
+h4 {color: #cccccc;}
+
+h5 {color: #bbbbbb;}
+
+h6 {color: #aaaaaa;}
+
+main {
+	position:  absolute;
+	top:       45%;
+	left:      50%;
+	margin:    auto;
+	transform: translate(-55%, -50%);
+}
+
+a {
+	color: #dddddd; /* Цвет ссылок */
+}
+
+a:visited {
+	color: #5eb5e0; /* Цвет посещенных ссылок */
+}
+
+a:active {
+	color: #ffffff; /* Цвет активных ссылок */
+}
