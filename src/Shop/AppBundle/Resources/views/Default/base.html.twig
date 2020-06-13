@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset = "UTF-8">
-	<title>{% block title %}Shop{% endblock %}</title>
-	<link rel="stylesheet" href="../../public/css/default.css">
-	{% block stylesheets %}{% endblock %}
+	{% block header %}
+		<meta charset = "UTF-8">
+		<title>{% block title %}Shop{% endblock %}</title>
+		{% block stylesheets %}
+			<link rel = "stylesheet"
+				  href = "{{ asset('assets/css/default.css') }}">
+		{% endblock %}
+	{% endblock %}
 </head>
-{% block header %}{% endblock %}
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}

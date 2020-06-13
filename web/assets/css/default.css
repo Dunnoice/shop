@@ -25,13 +25,13 @@ main {
 }
 
 a {
-	color: #dddddd; /* Цвет ссылок */
+	color: #dddddd;
 }
 
 a:visited {
-	color: #5eb5e0; /* Цвет посещенных ссылок */
+	color: #5eb5e0;
 }
 
 a:active {
-	color: #ffffff; /* Цвет активных ссылок */
+	color: #ffffff;
 }
