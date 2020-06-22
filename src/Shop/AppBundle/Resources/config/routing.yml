@@ -1,7 +1,0 @@
-shop_app_homepage:
-#    path:     /hello/{name}
-#    defaults: { _controller: ShopAppBundle:Default:index }
-    path: /
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    'ShopAppBundle:Default:index.html.twig'

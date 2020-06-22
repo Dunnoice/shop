@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>{% block title %}Shop{% endblock %}</title>
+	{% block stylesheets %}
+		<link rel = "stylesheet"
+			  href = "{{ asset('assets/css/default.css') }}">
+	{% endblock %}
+</head>
+<body>
+{% block header %}{% endblock %}
+{% block navigation %}
+	{% set menu = [
+		{name: "Home", path: "/"},
+		{name: "Register", path: "/register"}
+	] %}
+	<nav>
+		<ul class = "menu">
+			{% for item in menu %}
+				<li>
+					<a href = {{ item.path }}>{{ item.name }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+{% endblock %}
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

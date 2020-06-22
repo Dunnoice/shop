@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\AppBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
 /*	public function indexAction($name)
 	{
-		return $this->render('ShopAppBundle:Default:index.html.twig', ['name' => $name]);
+		return $this->render('AppBundle:Default:index.html.twig', ['name' => $name]);
 	}*/
 }

@@ -1,0 +1,26 @@
+{% extends 'AppBundle:Default:base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<style type = "text/css">
+		form {
+			position:  absolute;
+			top:       45%;
+			left:      50%;
+			margin:    auto;
+			transform: translate(-55%, -50%);
+		}
+	</style>
+{% endblock %}
+
+{% block title %}Register in Blog{% endblock %}
+
+{% block body %}
+	<div>
+		<form>
+			<h1>Registration</h1>
+			<h3>Please, fill in the form</h3>
+			{{ form(form) }}
+		</form>
+	</div>
+{% endblock %}
