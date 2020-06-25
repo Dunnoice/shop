@@ -12,19 +12,21 @@ class RegistrationType extends AbstractType
 	{
 		$builder->add('email', 'email');
 		$builder->add('username', 'text');
-		$builder->add('plainPassword', 'repeated', array(
+		$builder->add('plainPassword', 'repeated', [
 			'first_name'  => 'password',
 			'second_name' => 'confirm',
 			'type'        => 'password',
-		));
+		]
+		);
 		$builder->add('Register', 'submit');
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
-		$resolver->setDefaults(array(
-			'data_class' => 'AppBundle\Entity\User'
-		));
+		$resolver->setDefaults([
+				'data_class' => 'AppBundle\Entity\User',
+			]
+		);
 	}
 
 	/**

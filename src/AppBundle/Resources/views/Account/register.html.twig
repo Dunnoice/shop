@@ -2,15 +2,8 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<style type = "text/css">
-		form {
-			position:  absolute;
-			top:       45%;
-			left:      50%;
-			margin:    auto;
-			transform: translate(-55%, -50%);
-		}
-	</style>
+	<link rel="stylesheet"
+	      href="{{ asset('assets/css/form.css') }}">
 {% endblock %}
 
 {% block title %}Register in Blog{% endblock %}

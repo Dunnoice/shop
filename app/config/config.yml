@@ -62,7 +62,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-        mappings: # TODO: php app/console doctrine:schema:update Error: No metadata classes to process
+        mappings:
             AppBundle:
                 mapping:   true
                 type:      annotation
@@ -78,3 +78,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+doctrine_migrations:
+    namespace: App\Migrations
+    table_name: migration_versions
+    name: App Migrations

@@ -1,0 +1,7 @@
+form {
+	position:  absolute;
+	top:       45%;
+	left:      50%;
+	margin:    auto;
+	transform: translate(-55%, -50%);
+}

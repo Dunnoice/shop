@@ -1,0 +1,13 @@
+{% set menu = [
+	{name: "Home", path: path('app_homepage')},
+	{name: "Register", path: path('account_register')}
+] %}
+<nav>
+	<ul class="menu">
+		{% for item in menu %}
+			<li>
+				<a href={{ item.path }}>{{ item.name }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+</nav>
