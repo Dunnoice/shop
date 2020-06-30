@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form\Type;
+namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,10 +13,10 @@ class RegistrationType extends AbstractType
 		$builder->add('email', 'email');
 		$builder->add('username', 'text');
 		$builder->add('plainPassword', 'repeated', [
-			'first_name'  => 'password',
-			'second_name' => 'confirm',
-			'type'        => 'password',
-		]
+				'type'           => 'password',
+				'first_options'  => ['label' => 'Password'],
+				'second_options' => ['label' => 'Repeat Password'],
+			]
 		);
 		$builder->add('Register', 'submit');
 	}
