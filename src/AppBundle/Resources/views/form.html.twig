@@ -1,0 +1,14 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet"
+	      href="{{ asset('assets/css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	{% block form_title %}{% endblock %}
+	{{ form_errors(form) }}
+	{{ form_end(form) }}
+{% endblock %}

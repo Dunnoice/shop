@@ -22,15 +22,23 @@ class AccountController extends Controller
 
 		$form->handleRequest($request);
 
-		if ($form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
+		if ($form->isSubmitted() && $form->isValid()) {
+			$user->setRoles(['ROLE_USER']); // or else PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'roles' cannot be null
 
+			$encoder  = $this->get('security.encoder_factory')->getEncoder($user);
+			$password = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
+			$user->setPassword($password);
+
+			$em = $this->getDoctrine()->getManager();
 			$em->persist($user);
 			$em->flush();
 
 			return $this->redirect($this->generateUrl('index'));
 		}
 
-		return $this->render('AppBundle:Account:register.html.twig', ['form' => $form->createView()]);
+		return $this->render(
+			'AppBundle:Account:register.html.twig',
+			['form' => $form->createView()]
+		);
 	}
 }

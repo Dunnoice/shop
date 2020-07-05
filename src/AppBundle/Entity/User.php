@@ -4,51 +4,64 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Entity
- * @ORM\Table()
  * @UniqueEntity(fields="username", message="Username already taken")
  */
-class User
+class User implements UserInterface
 {
 	/**
 	 * @var integer
 	 *
 	 * @ORM\Id
-	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Column(type="integer")
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	protected $id;
+	private $id;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="username", type="string", length=20, unique=true)
+	 * @ORM\Column(type="string", length=64, unique=true)
 	 * @Assert\NotBlank()
 	 */
-	protected $username;
+	private $username;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="email", type="string", length=32)
+	 * @ORM\Column(type="string", length=32)
 	 * @Assert\NotBlank()
 	 * @Assert\Email()
 	 */
-	protected $email;
+	private $email;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="plainPassword", type="string", length=32)
 	 * @Assert\NotBlank()
 	 * @Assert\Length(max = 4096)
 	 */
-	protected $plainPassword;
+	private $plainPassword;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=64)
+	 */
+	private $password;
+
+	/**
+	 * @var array
+	 *
+	 * @ORM\Column(type="json_array")
+	 */
+	private $roles;
 
 
 	/**
@@ -62,9 +75,7 @@ class User
 	}
 
 	/**
-	 * Get username
-	 *
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function getUsername()
 	{
@@ -131,5 +142,71 @@ class User
 		$this->plainPassword = $plainPassword;
 
 		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getPassword()
+	{
+		return $this->password;
+	}
+
+	/**
+	 * Set password
+	 *
+	 * @param string $password
+	 *
+	 * @return User
+	 */
+	public function setPassword($password)
+	{
+		$this->password = $password;
+
+		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSalt()
+	{
+		// The bcrypt algorithm doesn't require a separate salt.
+		// You *may* need a real salt if you choose a different encoder.
+		return NULL;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getRoles()
+	{
+		$roles = $this->roles;
+		// guarantee every user at least has ROLE_USER
+		$roles[] = 'ROLE_USER';
+
+		return array_unique($roles);
+	}
+
+	/**
+	 * Set roles
+	 *
+	 * @param array $roles
+	 *
+	 * @return User
+	 */
+	public function setRoles(array $roles)
+	{
+		$this->roles = $roles;
+
+		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function eraseCredentials()
+	{
+		$this->plainPassword = NULL;
 	}
 }
