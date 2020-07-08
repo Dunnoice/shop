@@ -2,14 +2,15 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Security\Core\SecurityContextInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-
 use AppBundle\Entity\User;
+use AppBundle\Form\LoginType;
 use AppBundle\Form\RegistrationType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class AccountController extends Controller
 {
@@ -28,7 +29,7 @@ class AccountController extends Controller
 	{
 		$session = $request->getSession();
 
-		// get the login error if there is one
+		// Symfony\Component\Security\Core\Exception\AuthenticationException
 		if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
 			$error = $request->attributes->get(SecurityContextInterface::AUTHENTICATION_ERROR);
 		} else if (NULL !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
@@ -38,16 +39,21 @@ class AccountController extends Controller
 			$error = NULL;
 		}
 
-		// last username entered by the user
 		$lastUsername = (NULL === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
+
+		$form = $this->createForm(new LoginType(), NULL,
+			[
+				'action'        => $this->generateUrl('login_check'),
+				'last_username' => $lastUsername,
+			]
+		);
+		if ($error) {
+			$form->addError(new FormError($error->getMessageKey()));
+		}
 
 		return $this->render(
 			'AppBundle:Account:login.html.twig',
-			[
-				// last username entered by the user
-				'last_username' => $lastUsername,
-				'error'         => $error,
-			]
+			['form' => $form->createView()]
 		);
 	}
 

@@ -12,11 +12,11 @@
 	]) %}
 {% endif %}
 <nav>
-	<ul class="menu">
+	<div class="menu">
 		{% for item in menu %}
-			<li>
+			<div>
 				<a href={{ item.path }}>{{ item.name }}</a>
-			</li>
+			</div>
 		{% endfor %}
-	</ul>
+	</div>
 </nav>
