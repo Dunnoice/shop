@@ -3,6 +3,6 @@
 {% block title %}Welcome to Shop!{% endblock %}
 {% block body %}
 	<main>
-		<h1>Welcome to Shop!</h1>
+		<h1>Welcome to Shop{% if app.user %}, {{ app.user.username }}{% endif %}!</h1>
 	</main>
 {% endblock %}

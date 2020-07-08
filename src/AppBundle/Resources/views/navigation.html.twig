@@ -1,7 +1,16 @@
 {% set menu = [
 	{name: "Home", path: path('index')},
-	{name: "Register", path: path('registration')}
 ] %}
+{% if app.user %}
+	{% set menu = menu | merge([
+		{name: "Logout", path: path('logout')},
+	]) %}
+{% else %}
+	{% set menu = menu | merge([
+		{name: "Register", path: path('registration')},
+		{name: "Login", path: path('login')},
+	]) %}
+{% endif %}
 <nav>
 	<ul class="menu">
 		{% for item in menu %}

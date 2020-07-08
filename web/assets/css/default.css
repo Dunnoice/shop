@@ -28,9 +28,9 @@ a {
 	color: #ddd;
 }
 
-a:visited {
+/*a:visited {
 	color: #5eb5e0;
-}
+}*/
 
 a:active {
 	color: #fff;
