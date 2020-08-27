@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * User
  *
  * @ORM\Entity
+ * @ORM\Table(name="users")
  * @UniqueEntity(fields="username", message="Username already taken")
  */
 class User implements UserInterface
